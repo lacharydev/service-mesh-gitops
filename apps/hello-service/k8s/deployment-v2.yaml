@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-service-v2
+  labels:
+    app: hello-service
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-service
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: hello-service
+        version: v2
+    spec:
+      containers:
+        - name: hello-service
+          image: lacharydev/hello-service:v2  # <-- Update this to your real image
+          ports:
+            - containerPort: 80
+

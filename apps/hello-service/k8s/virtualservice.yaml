@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: hello-service
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-system/istio-ingressgateway  # Or use your own gateway
+  http:
+    - route:
+        - destination:
+            host: hello-service
+            subset: v1
+          weight: 90
+        - destination:
+            host: hello-service
+            subset: v2
+          weight: 10
+
